@@ -1,0 +1,19 @@
+#----------------------------------------------------------------------------------------------------------
+#
+# AUTOMATICALLY GENERATED FILE TO BE USED BY W_HOTBOX
+#
+# NAME: read from write
+# COLOR: #c5bd12
+# TEXTCOLOR: #111111
+#
+#----------------------------------------------------------------------------------------------------------
+
+newPosx = nuke.selectedNode().xpos()
+newPosy = nuke.selectedNode().ypos()
+newfile = nuke.selectedNode()["file"].value()
+newNode = nuke.nodes.Read(file = newfile)
+
+newNode.setXpos(newPosx+100)
+newNode.setYpos(newPosy)
+
+

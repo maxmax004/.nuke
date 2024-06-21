@@ -1,0 +1,101 @@
+#! C:/Program Files/Nuke10.0v3/nuke-10.0.3.dll -nx
+version 10.0 v3
+Gizmo {
+ inputs 2
+ addUserKnob {20 User}
+ addUserKnob {41 in l "Normal Vector" T Shuffle1.in}
+ addUserKnob {41 iRotation l "Env Map Offset" T Transform1.iRotation}
+}
+ Input {
+  inputs 0
+  name src
+  label src
+  xpos -65
+  ypos 46
+ }
+ Shuffle {
+  in none
+  name Shuffle1
+  selected true
+  xpos -65
+  ypos 108
+ }
+ Expression {
+  temp_name0 h
+  temp_expr0 -.001
+  expr0 r+h
+  expr1 g+h
+  expr2 b+h
+  name Expression1
+  xpos -65
+  ypos 167
+ }
+ Expression {
+  temp_name0 f1
+  temp_expr0 atan(b/r)
+  temp_name1 f2
+  temp_expr1 "atan (r/b)"
+  expr0 "b > 0 ? (r>= 0 ? f1 : pi + f1) : (r<=0 ? (3*pi/2) - f2 : (2*pi) + f1)"
+  expr1 "asin (g)"
+  expr2 0
+  name pos_to_rad
+  xpos -65
+  ypos 214
+ }
+ Expression {
+  expr0 degrees(r)
+  expr1 degrees(g)
+  name rad_degree
+  xpos -65
+  ypos 276
+ }
+ Expression {
+  expr0 r/360
+  expr1 (g+90)/180
+  expr2 0
+  name degree_UV
+  xpos -65
+  ypos 344
+ }
+ Input {
+  inputs 0
+  name Environment_Map
+  label "Environment Map"
+  xpos 215
+  ypos 56
+  number 1
+ }
+ Tile {
+  columns 4
+  name Tile1
+  xpos 215
+  ypos 189
+ }
+ Transform {
+  translate {{"(((normalize*(center.x*2)) - center.x)) % (center.x*2)"} 0}
+  scale {-4 1}
+  center {{input.width/2} {input.height/2}}
+  name Transform1
+  xpos 215
+  ypos 274
+  addUserKnob {20 User}
+  addUserKnob {7 normalize}
+  normalize {{"((iRotation + 180)/360)" x70 0.245}}
+  addUserKnob {7 iRotation R -180 180}
+  addUserKnob {41 translate_1 l translate T Transform1.translate}
+  addUserKnob {41 rotate_1 l rotate T Transform1.rotate}
+  addUserKnob {41 center_1 l center T Transform1.center}
+ }
+ STMap {
+  inputs 2
+  uv rgb
+  name STMap1
+  xpos 143
+  ypos 446
+ }
+ Output {
+  name Output1
+  xpos 143
+  ypos 546
+ }
+end_group

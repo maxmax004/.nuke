@@ -1,0 +1,11 @@
+#----------------------------------------------------------------------------------------------------------
+#
+# AUTOMATICALLY GENERATED FILE TO BE USED BY W_HOTBOX
+#
+# NAME: FrameHolder
+# COLOR: #00dbff
+# TEXTCOLOR: #111111
+#
+#----------------------------------------------------------------------------------------------------------
+
+nuke.loadToolset("F:\_nuke\ToolSets\michi_Tools\FrameHolder.nk")

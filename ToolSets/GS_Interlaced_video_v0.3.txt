@@ -1,0 +1,1215 @@
+set cut_paste_input [stack 0]
+version 11.2 v2
+push $cut_paste_input
+Group {
+ name GS_Interlaced
+ tile_color 0xc92100ff
+ gl_color 0xffffffff
+ selected true
+ xpos 4961
+ ypos 1452
+ addUserKnob {20 User}
+ addUserKnob {26 interlacedname l "" +STARTLINE T "<font size=\"6\"><div><span style=\"color:98E2E2;\"></span><span style=\"color:#A1D7E1;\">In</span><span style=\"color:#84BEDE;\">t</span><span style=\"color:#849FDE;\">e</span><span style=\"color:#8486DE;\">r</span><span style=\"color:#8179DC;\">l</span><span style=\"color:#7F6CDC;\">a</span><span style=\"color:#7152CD;\">c</span><span style=\"color:#AD9BDE;\">e</span><span style=\"color:#BD9BDE;\">d</span></div><font size=\"3\"></span><span style=\"color:#DDCDE8;\"> </span><span style=\"color:#DFD3E7;\">Video v0.3"}
+ addUserKnob {26 Dinamic_Interlacement}
+ addUserKnob {41 Frame_blend T TimeOffset1.time_offset}
+ addUserKnob {26 Static_Interlacement_1 l Static_Interlacement}
+ addUserKnob {6 Static_Interlacement +STARTLINE}
+ Static_Interlacement true
+ addUserKnob {41 Iterations T Expression9.Iterations}
+ addUserKnob {6 Animated +STARTLINE}
+ Animated true
+ addUserKnob {26 Dither}
+ addUserKnob {6 Interlaced_dither +STARTLINE}
+ Interlaced_dither true
+ addUserKnob {41 Dither_1 T Grade1.multiply}
+ addUserKnob {41 Dither_2 T Grade2.multiply}
+ addUserKnob {41 Invert T Invert3.disable}
+ addUserKnob {26 Chroma_Abb}
+ addUserKnob {41 Channel_shift T Transform1.translate}
+ addUserKnob {41 Master_mix T Mix.mix}
+ addUserKnob {6 Direction_check +STARTLINE}
+ addUserKnob {41 Direction T Switch1.which}
+ addUserKnob {41 Direcion_mix T Directional.mix}
+ addUserKnob {41 Direction_size T Direction_Size.size}
+ addUserKnob {41 Direction_blur T Direction_Blur.size}
+ addUserKnob {6 Luminance_check +STARTLINE}
+ addUserKnob {41 Luminance_mix T Luminance.mix}
+}
+ Noise {
+  inputs 0
+  type turbulence
+  size 60
+  zoffset {{frame-50}}
+  octaves 20
+  lacunarity 1.62
+  gain 0.151
+  gamma 1
+  center {360 288}
+  name Noise2
+  xpos 2072
+  ypos -438
+ }
+set Ne6bd2700 [stack 0]
+ Invert {
+  name Invert4
+  xpos 2198
+  ypos -444
+ }
+ Grade {
+  channels alpha
+  white 1.26
+  gamma 0.2
+  name Grade3
+  xpos 2198
+  ypos -304
+ }
+set Nf8113c00 [stack 0]
+push $Nf8113c00
+ Noise {
+  inputs 0
+  type turbulence
+  size 47
+  zoffset {{frame}}
+  gain 0.9
+  gamma 0
+  center {360 288}
+  name Noise1
+  xpos 2930
+  ypos -352
+ }
+ Dot {
+  name Dot3
+  xpos 2964
+  ypos -294
+ }
+set Nf8113180 [stack 0]
+ Expression {
+  inputs 0
+  expr3 fmod((x/1),1)==0?fmod(y/2,2)==0?1:0:0
+  name Expression8
+  xpos 2830
+  ypos -435
+ }
+set Nf8112e00 [stack 0]
+push $Nf8112e00
+ Matrix {
+  matrix {
+      {0 0 0}
+      {0 0 0}
+      {0 1 0}
+    }
+  name Matrix4
+  xpos 2712
+  ypos -441
+ }
+ Matrix {
+  matrix {
+      {0 0 0}
+      {0 0 0}
+      {0 1 0}
+    }
+  name Matrix20
+  xpos 2712
+  ypos -384
+ }
+ Keymix {
+  inputs 3
+  name Keymix4
+  xpos 2712
+  ypos -304
+ }
+ Expression {
+  inputs 0
+  expr3 fmod((x/2),2)==0?fmod(y/2,2)==0?1:0:0
+  name Expression7
+  xpos 2502
+  ypos -441
+ }
+ Keymix {
+  inputs 3
+  mix 0.475
+  name Keymix3
+  xpos 2502
+  ypos -304
+ }
+set Nf5987500 [stack 0]
+ Merge2 {
+  inputs 2
+  operation mask
+  name Merge8
+  label "\[value mix]"
+  xpos 2502
+  ypos -143
+ }
+set Nf5987180 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {0 0 0}
+      {0 1 0}
+    }
+  name Matrix21
+  xpos 2627
+  ypos -143
+ }
+ Matrix {
+  matrix {
+      {0 0 0}
+      {0 0 0}
+      {0 1 0}
+    }
+  name Matrix22
+  xpos 2627
+  ypos -36
+ }
+push $Nf5987180
+ Merge2 {
+  inputs 2
+  operation copy
+  mix 0.5
+  name Merge9
+  label "\[value mix]"
+  xpos 2502
+  ypos -36
+ }
+push $Ne6bd2700
+ Grade {
+  channels alpha
+  white 2.85
+  gamma 0.3
+  name Grade4
+  xpos 2072
+  ypos -297
+ }
+push $Nf8113180
+ Dot {
+  name Dot37
+  xpos 2964
+  ypos -248
+ }
+ Expression {
+  inputs 0
+  expr3 fmod((x/1),2)==1?fmod(y/2,2)==0?1:0:0
+  name Expression1
+  xpos 2336
+  ypos -437
+ }
+ Matrix {
+  matrix {
+      {0 0 0}
+      {0 0 0}
+      {0 1 0}
+    }
+  name Matrix2
+  xpos 2336
+  ypos -384
+ }
+ Matrix {
+  matrix {
+      {0 0 0}
+      {0 0 0}
+      {0 1 0}
+    }
+  name Matrix3
+  xpos 2336
+  ypos -328
+ }
+push $Nf5987500
+ Keymix {
+  inputs 3
+  mix 0.38
+  name Keymix2
+  xpos 2336
+  ypos -258
+ }
+ Merge2 {
+  inputs 2
+  operation mask
+  name Merge6
+  label "\[value mix]"
+  xpos 2336
+  ypos -133
+ }
+ Expression {
+  inputs 0
+  expr3 fmod((x/1),1)==0?fmod((y-frame),2)==0?1:0:0
+  name Expression10
+  xpos 1911
+  ypos -716
+ }
+ Expression {
+  inputs 0
+  expr3 fmod((x/1),1)==0?fmod(y,2)==0?1:0:0
+  name Expression2
+  xpos 1802
+  ypos -719
+ }
+ Switch {
+  inputs 2
+  which {{Animated}}
+  name Switch7
+  xpos 1801
+  ypos -664
+ }
+set N89d89880 [stack 0]
+ Invert {
+  name Invert3
+  xpos 1801
+  ypos -508
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 1506
+  ypos -1107
+ }
+ Dot {
+  name Dot26
+  label "src + Alpha"
+  xpos 1540
+  ypos -1050
+ }
+ Dot {
+  name Dot4
+  xpos 1540
+  ypos -954
+ }
+set N89d88a80 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {{NoOp1.RightLeft} 0 {1-NoOp1.RightLeft}}
+      {0 0 0}
+    }
+  name Matrix1
+  xpos 1135
+  ypos -964
+ }
+set N89d88700 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {{NoOp1.RightLeft} 0 {1-NoOp1.RightLeft}}
+      {0 0 0}
+    }
+  name Matrix32
+  xpos 829
+  ypos -964
+ }
+set N89d88380 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {{NoOp1.RightLeft} 0 {1-NoOp1.RightLeft}}
+      {0 0 0}
+    }
+  name Matrix33
+  xpos 829
+  ypos -851
+ }
+set N89d88000 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {{NoOp1.RightLeft} 0 {1-NoOp1.RightLeft}}
+      {0 0 0}
+    }
+  name Matrix34
+  xpos 829
+  ypos -813
+ }
+set Nfc5d5c00 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {{NoOp1.RightLeft} 0 {1-NoOp1.RightLeft}}
+      {0 0 0}
+    }
+  name Matrix35
+  xpos 829
+  ypos -775
+ }
+set Nfc5d5880 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {{NoOp1.RightLeft} 0 {1-NoOp1.RightLeft}}
+      {0 0 0}
+    }
+  name Matrix36
+  xpos 829
+  ypos -737
+ }
+set Nfc5d5500 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {{NoOp1.RightLeft} 0 {1-NoOp1.RightLeft}}
+      {0 0 0}
+    }
+  name Matrix37
+  xpos 829
+  ypos -699
+ }
+set Nfc5d5180 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {{NoOp1.RightLeft} 0 {1-NoOp1.RightLeft}}
+      {0 0 0}
+    }
+  name Matrix38
+  xpos 829
+  ypos -661
+ }
+set Nfc5d4e00 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {{NoOp1.RightLeft} 0 {1-NoOp1.RightLeft}}
+      {0 0 0}
+    }
+  name Matrix39
+  xpos 829
+  ypos -623
+ }
+set Nfc5d4a80 [stack 0]
+ Matrix {
+  matrix {
+      {0 0 0}
+      {{NoOp1.RightLeft} 0 {1-NoOp1.RightLeft}}
+      {0 0 0}
+    }
+  name Matrix40
+  xpos 829
+  ypos -585
+ }
+push $Nfc5d4a80
+push $Nfc5d4e00
+push $Nfc5d5180
+push $Nfc5d5500
+push $Nfc5d5880
+push $Nfc5d5c00
+push $N89d88000
+push $N89d88380
+push $N89d88700
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge10
+  label "\[value mix]"
+  xpos 1135
+  ypos -889
+ }
+set Nfc5d4380 [stack 0]
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge11
+  label "\[value mix]"
+  xpos 1135
+  ypos -851
+ }
+set Nfc5d4000 [stack 0]
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge12
+  label "\[value mix]"
+  xpos 1135
+  ypos -813
+ }
+set N88775c00 [stack 0]
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge13
+  label "\[value mix]"
+  xpos 1135
+  ypos -775
+ }
+set N88775880 [stack 0]
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge14
+  label "\[value mix]"
+  xpos 1135
+  ypos -737
+ }
+set N88775500 [stack 0]
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge15
+  label "\[value mix]"
+  xpos 1135
+  ypos -699
+ }
+set N88775180 [stack 0]
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge16
+  label "\[value mix]"
+  xpos 1135
+  ypos -661
+ }
+set N88774e00 [stack 0]
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge17
+  label "\[value mix]"
+  xpos 1135
+  ypos -623
+ }
+set N88774a80 [stack 0]
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge18
+  label "\[value mix]"
+  xpos 1135
+  ypos -585
+ }
+push $N88774a80
+push $N88774e00
+push $N88775180
+push $N88775500
+push $N88775880
+push $N88775c00
+push $Nfc5d4000
+push $Nfc5d4380
+push $N89d88700
+push $N89d88a80
+ Switch {
+  inputs 11
+  which {{Expression9.Iterations x1070 3.38}}
+  name Switch6
+  xpos 1301
+  ypos -780
+ }
+ Expression {
+  expr0 r/int(Iterations)
+  expr1 g/int(Iterations)
+  expr2 b/int(Iterations)
+  expr3 a/int(Iterations)
+  name Expression9
+  xpos 1310
+  ypos -554
+  addUserKnob {20 User}
+  addUserKnob {7 Iterations R 1 10}
+  Iterations 5
+ }
+push $N89d89880
+push $N89d88a80
+ TimeOffset {
+  time ""
+  name TimeOffset1
+  label "\[value time_offset]"
+  xpos 1396
+  ypos -670
+ }
+push $N89d88a80
+ Keymix {
+  inputs 3
+  name Keymix5
+  xpos 1506
+  ypos -670
+ }
+set Nfc59b880 [stack 0]
+ Switch {
+  inputs 2
+  which {{parent.Static_Interlacement}}
+  name Switch2
+  selected true
+  xpos 1310
+  ypos -502
+ }
+push $Nfc59b880
+ Keymix {
+  inputs 3
+  name Keymix1
+  xpos 1506
+  ypos -508
+ }
+set Nfc59b180 [stack 0]
+ Dot {
+  name Dot38
+  xpos 1540
+  ypos -207
+ }
+set Nfc59ae00 [stack 0]
+ Grade {
+  inputs 1+1
+  multiply {1.110001 0.950001 1.090001 0.92}
+  multiply_panelDropped true
+  name Grade1
+  xpos 1506
+  ypos -127
+ }
+ Grade {
+  inputs 1+1
+  multiply {0.903334 0.943334 1.003334 0.88}
+  multiply_panelDropped true
+  name Grade2
+  xpos 1506
+  ypos -30
+ }
+push $Nfc59ae00
+ Dot {
+  name Dot39
+  xpos 1459
+  ypos -207
+ }
+ Dot {
+  name Dot36
+  xpos 1459
+  ypos 53
+ }
+ Switch {
+  inputs 2
+  which {{parent.Interlaced_dither}}
+  name Switch5
+  xpos 1506
+  ypos 49
+ }
+ Expression {
+  expr0 abs(r)
+  expr1 abs(g)
+  expr2 abs(b)
+  name Expression3
+  xpos 1506
+  ypos 328
+ }
+ Dot {
+  name Dot5
+  xpos 1540
+  ypos 400
+ }
+set Neabed180 [stack 0]
+ Dot {
+  name Dot31
+  xpos 1159
+  ypos 410
+ }
+ Keyer {
+  operation "luminance key"
+  range {0.1018219237 0.3456730891 1 1}
+  name Keyer1
+  xpos 1125
+  ypos 653
+ }
+ Erode {
+  channels all
+  size -9
+  name Erode1
+  xpos 1125
+  ypos 707
+ }
+ Blur {
+  size 7.8
+  name Blur2
+  xpos 1125
+  ypos 777
+ }
+set Neabec380 [stack 0]
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle4
+  label "\[value in]"
+  xpos 829
+  ypos 1663
+ }
+push $Neabed180
+ Dot {
+  name Dot32
+  xpos 1980
+  ypos 400
+ }
+ Shuffle {
+  green red
+  blue red
+  name Shuffle2
+  label "\[value in]"
+  xpos 1946
+  ypos 465
+ }
+set Nfad23880 [stack 0]
+ Expression {
+  expr3 a/3
+  name Expression6
+  xpos 1374
+  ypos 1201
+  hide_input true
+ }
+push $Neabec380
+ Invert {
+  name Invert2
+  xpos 1125
+  ypos 868
+ }
+push $Neabed180
+ Shuffle {
+  red black
+  name Shuffle3
+  label "\[value in]"
+  xpos 1506
+  ypos 469
+ }
+set Nfad22a80 [stack 0]
+ Dot {
+  name Dot28
+  xpos 1621
+  ypos 608
+ }
+ Dot {
+  name Dot29
+  xpos 1621
+  ypos 833
+ }
+set Nfad22380 [stack 0]
+ Dot {
+  name Dot30
+  xpos 1621
+  ypos 892
+ }
+set Nfad22000 [stack 0]
+push $Nfad22a80
+ Transform {
+  translate {-1 -1}
+  center {360 288}
+  name Transform1
+  xpos 1506
+  ypos 705
+ }
+ Blur {
+  name Blur1
+  xpos 1506
+  ypos 777
+ }
+push $Nfad22380
+ Merge2 {
+  inputs 2
+  operation copy
+  name Mix
+  label "\[value mix]"
+  xpos 1506
+  ypos 823
+ }
+ Keymix {
+  inputs 3
+  mix 0.475
+  name Luminance
+  xpos 1506
+  ypos 882
+ }
+set N89565180 [stack 0]
+ Expression {
+  expr3 a/3
+  name Expression5
+  xpos 1105
+  ypos 1253
+  hide_input true
+ }
+push $Nfad22a80
+ Expression {
+  expr3 a/3
+  name Expression4
+  xpos 1215
+  ypos 1207
+  hide_input true
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge7
+  label "\[value mix]"
+  xpos 1215
+  ypos 1247
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge3
+  label "\[value mix]"
+  xpos 1374
+  ypos 1247
+ }
+set Nfc495c00 [stack 0]
+push $Nfc495c00
+ Dot {
+  name Dot25
+  xpos 1408
+  ypos 1345
+ }
+ Dot {
+  name Dot35
+  xpos 492
+  ypos 529
+ }
+ Dot {
+  name Dot22
+  xpos 492
+  ypos 623
+ }
+set Nfc495180 [stack 0]
+ Dot {
+  name Dot23
+  xpos 665
+  ypos 623
+ }
+ FilterErode {
+  channels all
+  size 0
+  name FilterErode_alpha
+  xpos 631
+  ypos 801
+ }
+ Dot {
+  name Dot24
+  xpos 665
+  ypos 882
+ }
+push $Nfc495180
+ Matrix {
+  channels rgba
+  matrix {
+      {{"\[python nuke.toNode('Matrix'\\ +\\nstr(int(nuke.toNode('Switch1').knob('which').value()))).knob('matrix').value(0,0)]"} {"\[python nuke.toNode('Matrix'\\ +\\nstr(int(nuke.toNode('Switch1').knob('which').value()))).knob('matrix').value(0,1)]"} {"\[python nuke.toNode('Matrix'\\ +\\nstr(int(nuke.toNode('Switch1').knob('which').value()))).knob('matrix').value(0,2)]"}}
+      {{"\[python nuke.toNode('Matrix'\\ +\\nstr(int(nuke.toNode('Switch1').knob('which').value()))).knob('matrix').value(1,0)]"} {"\[python nuke.toNode('Matrix'\\ +\\nstr(int(nuke.toNode('Switch1').knob('which').value()))).knob('matrix').value(1,1)]"} {"\[python nuke.toNode('Matrix'\\ +\\nstr(int(nuke.toNode('Switch1').knob('which').value()))).knob('matrix').value(1,2)]"}}
+      {{"\[python nuke.toNode('Matrix'\\ +\\nstr(int(nuke.toNode('Switch1').knob('which').value()))).knob('matrix').value(2,0)]"} {"\[python nuke.toNode('Matrix'\\ +\\nstr(int(nuke.toNode('Switch1').knob('which').value()))).knob('matrix').value(2,1)]"} {"\[python nuke.toNode('Matrix'\\ +\\nstr(int(nuke.toNode('Switch1').knob('which').value()))).knob('matrix').value(2,2)]"}}
+    }
+  name MasterMatrix
+  xpos 458
+  ypos 686
+ }
+ FilterErode {
+  channels {{{parent.MatrixSUPER.channels}}}
+  size -10
+  name Direction_Size
+  xpos 458
+  ypos 798
+ }
+ Blur {
+  channels {{{parent.MatrixSUPER.channels}}}
+  size 10
+  quality 30
+  name Direction_Blur
+  xpos 458
+  ypos 870
+ }
+ Merge2 {
+  inputs 2
+  operation in
+  name Merge5
+  xpos 458
+  ypos 956
+  disable {{!parent.keep_alpha}}
+ }
+set Nddcb9880 [stack 0]
+ Invert {
+  name Invert1
+  xpos 1124
+  ypos 947
+ }
+push $Nfad22000
+push $N89565180
+ Keymix {
+  inputs 3
+  mix 0.91
+  name Directional
+  xpos 1506
+  ypos 947
+ }
+push $Nfad23880
+ Dot {
+  name Dot34
+  xpos 1980
+  ypos 1091
+ }
+ ShuffleCopy {
+  inputs 2
+  green green
+  blue blue
+  name ShuffleCopy1
+  xpos 1506
+  ypos 1087
+ }
+set Nddcb8a80 [stack 0]
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy2
+  xpos 1506
+  ypos 1247
+ }
+set Nddcb8700 [stack 0]
+ Merge2 {
+  inputs 2
+  name Merge2
+  label "\[value mix]"
+  xpos 1335
+  ypos 1666
+ }
+push $Nddcb9880
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle1
+  label "\[value in]"
+  xpos 458
+  ypos 1535
+ }
+push $Nddcb8700
+ Merge2 {
+  inputs 2
+  name Merge1
+  label "\[value mix]"
+  xpos 1344
+  ypos 1535
+ }
+push $Nddcb8700
+push $Nddcb8a80
+ Merge2 {
+  inputs 2
+  operation mask
+  name Merge4
+  label "\[value mix]"
+  xpos 1645
+  ypos 1247
+ }
+push $Nddcb8700
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos 1506
+  ypos 1360
+ }
+ Switch {
+  inputs 2
+  which {{parent.Direction_check}}
+  name Switch3
+  xpos 1506
+  ypos 1541
+ }
+ Switch {
+  inputs 2
+  which {{parent.Luminance_check}}
+  name Switch4
+  xpos 1506
+  ypos 1672
+ }
+ Dot {
+  name Dot33
+  xpos 1540
+  ypos 1722
+ }
+ Output {
+  name Output1
+  xpos 1506
+  ypos 1828
+ }
+ Dot {
+  inputs 0
+  name Dot16
+  xpos -33
+  ypos 271
+ }
+set N886a6380 [stack 0]
+ Matrix {
+  matrix {
+      {0 1 1}
+      {-1 0 1}
+      {-1 -1 0}
+    }
+  name Matrix15
+  xpos 21
+  ypos 261
+ }
+push $N886a6380
+ Dot {
+  name Dot6
+  xpos -33
+  ypos 358
+ }
+set Nf81ddc00 [stack 0]
+ Matrix {
+  matrix {
+      {1 1 1}
+      {-1 0 1}
+      {-1 -1 -1}
+    }
+  name Matrix14
+  xpos 16
+  ypos 348
+ }
+push $Nf81ddc00
+ Dot {
+  name Dot14
+  xpos -33
+  ypos 436
+ }
+set Nf81dd500 [stack 0]
+ Matrix {
+  matrix {
+      {1 1 1}
+      {0 0 0}
+      {-1 -1 -1}
+    }
+  name Matrix13
+  xpos 18
+  ypos 426
+ }
+push $Nf81dd500
+ Dot {
+  name Dot13
+  xpos -33
+  ypos 523
+ }
+set Nf81dce00 [stack 0]
+ Matrix {
+  matrix {
+      {1 1 1}
+      {1 0 -1}
+      {-1 -1 -1}
+    }
+  name Matrix12
+  xpos 13
+  ypos 513
+ }
+push $Nf81dce00
+ Dot {
+  name Dot12
+  xpos -33
+  ypos 606
+ }
+set Nf81dc700 [stack 0]
+ Matrix {
+  matrix {
+      {1 1 0}
+      {1 0 -1}
+      {0 -1 -1}
+    }
+  name Matrix11
+  xpos 7
+  ypos 596
+ }
+push $Nf81dc700
+ Dot {
+  name Dot11
+  xpos -33
+  ypos 699
+ }
+set Nf81dc000 [stack 0]
+ Matrix {
+  matrix {
+      {1 1 -1}
+      {0 0 0}
+      {1 -1 -1}
+    }
+  name Matrix10
+  xpos 11
+  ypos 689
+ }
+push $Nf81dc000
+ Dot {
+  name Dot10
+  xpos -33
+  ypos 781
+ }
+set Ne5e5d880 [stack 0]
+ Matrix {
+  matrix {
+      {1 1 -1}
+      {1 0 -1}
+      {1 -1 -1}
+    }
+  name Matrix9
+  xpos 9
+  ypos 771
+ }
+push $Ne5e5d880
+ Dot {
+  name Dot9
+  xpos -33
+  ypos 857
+ }
+set Ne5e5d180 [stack 0]
+ Matrix {
+  matrix {
+      {1 0 -1}
+      {1 0 -1}
+      {1 0 -1}
+    }
+  name Matrix8
+  xpos 11
+  ypos 847
+ }
+push $Ne5e5d180
+ Dot {
+  name Dot8
+  xpos -33
+  ypos 936
+ }
+set Ne5e5ca80 [stack 0]
+ Matrix {
+  matrix {
+      {1 -1 -1}
+      {1 0 -1}
+      {1 1 -1}
+    }
+  name Matrix7
+  xpos 7
+  ypos 926
+ }
+push $Ne5e5ca80
+ Dot {
+  name Dot15
+  xpos -33
+  ypos 985
+ }
+set Ne5e5c380 [stack 0]
+ Matrix {
+  matrix {
+      {0 -1 -1}
+      {1 0 -1}
+      {1 1 0}
+    }
+  name Matrix6
+  xpos 7
+  ypos 975
+ }
+push $Ne5e5c380
+ Dot {
+  name Dot7
+  xpos -33
+  ypos 1037
+ }
+set Nfeaf9c00 [stack 0]
+ Matrix {
+  matrix {
+      {-1 -1 -1}
+      {1 0 -1}
+      {1 1 1}
+    }
+  name Matrix5
+  xpos 5
+  ypos 1027
+ }
+push $Nfeaf9c00
+ Dot {
+  name Dot17
+  xpos -33
+  ypos 1097
+ }
+set Nfeaf9500 [stack 0]
+ Matrix {
+  matrix {
+      {-1 -1 -1}
+      {0 0 0}
+      {1 1 1}
+    }
+  name Matrix16
+  xpos 6
+  ypos 1087
+ }
+push $Nfeaf9500
+ Dot {
+  name Dot18
+  xpos -33
+  ypos 1153
+ }
+set Nfeaf8e00 [stack 0]
+ Matrix {
+  matrix {
+      {-1 -1 -1}
+      {-1 0 1}
+      {1 1 1}
+    }
+  name Matrix17
+  xpos 4
+  ypos 1143
+ }
+push $Nfeaf8e00
+ Dot {
+  name Dot19
+  xpos -33
+  ypos 1216
+ }
+set Nfeaf8700 [stack 0]
+ Matrix {
+  matrix {
+      {-1 -1 0}
+      {-1 0 1}
+      {0 1 1}
+    }
+  name Matrix18
+  xpos 4
+  ypos 1206
+ }
+push $Nfeaf8700
+ Dot {
+  name Dot20
+  xpos -33
+  ypos 1285
+ }
+set Nfeaf8000 [stack 0]
+ Matrix {
+  matrix {
+      {-1 -1 1}
+      {-1 0 1}
+      {-1 1 1}
+    }
+  name Matrix19
+  xpos 4
+  ypos 1275
+ }
+push $Nfeaf8000
+ Dot {
+  name Dot21
+  xpos -33
+  ypos 1344
+ }
+ Matrix {
+  matrix {
+      {-1 0 1}
+      {-1 0 1}
+      {-1 0 1}
+    }
+  name Matrix0
+  xpos 3
+  ypos 1334
+ }
+ Switch {
+  inputs 16
+  which 7.05
+  name Switch1
+  xpos 177
+  ypos 695
+ }
+ NoOp {
+  inputs 0
+  name NoOp1
+  xpos 1135
+  ypos -1050
+  addUserKnob {20 User}
+  addUserKnob {6 RightLeft +STARTLINE}
+  RightLeft true
+ }
+push $Nfc59b180
+ Viewer {
+  frame_range 1001-1181
+  fps 25
+  colour_sample_bbox {0.349999994 -0.1361111104 0.3722222149 -0.1111111119}
+  name Viewer1
+  xpos 1115
+  ypos 824
+ }
+end_group

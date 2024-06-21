@@ -1,0 +1,77 @@
+<root tasktype="hiero.exporters.FnShotProcessor.ShotProcessor" presetname="PROXY JPEG">
+    <excludeTags valuetype="list" />
+    <includeTags valuetype="list" />
+    <versionIndex valuetype="int">1</versionIndex>
+    <versionPadding valuetype="int">2</versionPadding>
+    <exportTemplate valuetype="list">
+        <SequenceItem valuetype="tuple">
+            <SequenceItem valuetype="str">_PROXY/{filebase}/{filebase}.####.{ext}</SequenceItem>
+            <SequenceItem valuetype="hiero.exporters.FnTranscodeExporter.TranscodePreset">
+                <root tasktype="hiero.exporters.FnTranscodeExporter.TranscodeExporter" presetname="hiero.exporters.FnTranscodeExporter.TranscodeExporter">
+                    <file_type valuetype="str">jpeg</file_type>
+                    <reformat valuetype="dict">
+                        <to_type valuetype="str">scale</to_type>
+                        <scale valuetype="float">0.5</scale>
+                        <resize valuetype="str">width</resize>
+                        <center valuetype="bool">True</center>
+                        <filter valuetype="str">Cubic</filter>
+                        <name valuetype="str">HD_720</name>
+                        <width valuetype="int">1280</width>
+                        <height valuetype="int">720</height>
+                        <pixelAspect valuetype="float">1.0</pixelAspect>
+                    </reformat>
+                    <channels valuetype="str">rgb</channels>
+                    <views valuetype="list">
+                        <SequenceItem valuetype="str">all</SequenceItem>
+                    </views>
+                    <colourspace valuetype="str">Output - Rec.709</colourspace>
+                    <keepNukeScript valuetype="bool">False</keepNukeScript>
+                    <readAllLinesForExport valuetype="bool">False</readAllLinesForExport>
+                    <useSingleSocket valuetype="bool">False</useSingleSocket>
+                    <burninDataEnabled valuetype="bool">False</burninDataEnabled>
+                    <burninData valuetype="dict">
+                        <burnIn_textSize valuetype="NoneType">None</burnIn_textSize>
+                        <burnIn_padding valuetype="NoneType">None</burnIn_padding>
+                        <burnIn_font valuetype="NoneType">None</burnIn_font>
+                        <burnIn_topLeft valuetype="NoneType">None</burnIn_topLeft>
+                        <burnIn_topMiddle valuetype="NoneType">None</burnIn_topMiddle>
+                        <burnIn_topRight valuetype="NoneType">None</burnIn_topRight>
+                        <burnIn_bottomLeft valuetype="NoneType">None</burnIn_bottomLeft>
+                        <burnIn_bottomMiddle valuetype="NoneType">None</burnIn_bottomMiddle>
+                        <burnIn_bottomRight valuetype="NoneType">None</burnIn_bottomRight>
+                    </burninData>
+                    <additionalNodesEnabled valuetype="bool">False</additionalNodesEnabled>
+                    <additionalNodesData valuetype="list" />
+                    <method valuetype="str">Blend</method>
+                    <includeEffects valuetype="bool">True</includeEffects>
+                    <includeAudio valuetype="bool">False</includeAudio>
+                    <deleteAudio valuetype="bool">True</deleteAudio>
+                    <includeAnnotations valuetype="bool">False</includeAnnotations>
+                    <numChannels valuetype="str">stereo</numChannels>
+                    <codec valuetype="str">linear PCM (wav)</codec>
+                    <sampleRate valuetype="str">44100 Hz</sampleRate>
+                    <bitDepth valuetype="str">24 bit</bitDepth>
+                    <bitRate valuetype="str">320 kbp/s</bitRate>
+                    <writeNodeName valuetype="str">Write_{ext}</writeNodeName>
+                    <dpx valuetype="dict">
+                        <datatype valuetype="str">8 bit</datatype>
+                        <fill valuetype="bool">False</fill>
+                        <bigEndian valuetype="bool">True</bigEndian>
+                        <transfer valuetype="str">(auto detect)</transfer>
+                    </dpx>
+                    <jpeg valuetype="dict">
+                        <_jpeg_quality valuetype="float">0.75</_jpeg_quality>
+                    </jpeg>
+                    <colorspace valuetype="str">color_picking</colorspace>
+                </root>
+            </SequenceItem>
+        </SequenceItem>
+    </exportTemplate>
+    <exportRoot valuetype="str">{projectroot}/../</exportRoot>
+    <cutHandles valuetype="int">12</cutHandles>
+    <cutUseHandles valuetype="bool">False</cutUseHandles>
+    <cutLength valuetype="bool">False</cutLength>
+    <includeRetimes valuetype="bool">False</includeRetimes>
+    <startFrameIndex valuetype="int">1001</startFrameIndex>
+    <startFrameSource valuetype="str">Source</startFrameSource>
+</root>

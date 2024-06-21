@@ -1,0 +1,15 @@
+{
+ "overrides": {
+  "Nuke/Viewer/Connect to A Side/Using Input 1": "Ctrl+1",
+  "Nuke/Viewer/Connect to A Side/Using Input 10": "Ctrl+0",
+  "Nuke/Viewer/Connect to A Side/Using Input 2": "Ctrl+2",
+  "Nuke/Viewer/Connect to A Side/Using Input 3": "Ctrl+3",
+  "Nuke/Viewer/Connect to A Side/Using Input 4": "Ctrl+4",
+  "Nuke/Viewer/Connect to A Side/Using Input 5": "Ctrl+5",
+  "Nuke/Viewer/Connect to A Side/Using Input 6": "Ctrl+6",
+  "Nuke/Viewer/Connect to A Side/Using Input 7": "Ctrl+7",
+  "Nuke/Viewer/Connect to A Side/Using Input 8": "Ctrl+8",
+  "Nuke/Viewer/Connect to A Side/Using Input 9": "Ctrl+9"
+ },
+ "version": 1
+}

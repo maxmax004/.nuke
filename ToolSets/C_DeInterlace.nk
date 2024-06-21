@@ -1,0 +1,838 @@
+#! C:/Program Files/Nuke11.0v1/nuke-11.0.1.dll -nx
+version 11.0 v1
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1664" h="971" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1620" stretch="1"/>
+            <splitter orientation="1">
+                <split size="808"/>
+                <splitter orientation="2">
+                    <split size="462"/>
+                    <dock id="" activePageId="Viewer.1">
+                        <page id="Viewer.2"/>
+                        <page id="Viewer.1"/>
+                    </dock>
+                    <split size="461"/>
+                    <dock id="" activePageId="DAG.1" focus="true">
+                        <page id="DAG.1"/>
+                        <page id="Curve Editor.1"/>
+                        <page id="DopeSheet.1"/>
+                    </dock>
+                </splitter>
+                <split size="808"/>
+                <splitter orientation="2">
+                    <split size="462"/>
+                    <splitter orientation="1">
+                        <split size="443"/>
+                        <dock id="" activePageId="Error Console.1">
+                            <page id="Error Console.1"/>
+                            <page id="Progress.1"/>
+                            <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                            <page id="Pixel Analyzer.1"/>
+                        </dock>
+                        <split size="361"/>
+                        <dock id="" activePageId="uk.co.thefoundry.waveformscope.1">
+                            <page id="uk.co.thefoundry.histogram.1"/>
+                            <page id="uk.co.thefoundry.waveformscope.1"/>
+                            <page id="uk.co.thefoundry.vectorscope.1"/>
+                        </dock>
+                    </splitter>
+                    <split size="461"/>
+                    <dock id="" activePageId="uk.co.thefoundry.scripteditor.1">
+                        <page id="uk.co.thefoundry.scripteditor.1"/>
+                    </dock>
+                </splitter>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Users/Chris/Documents/Nuke/Scripts/Products/C_DeInterlace.nk
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Group {
+ inputs 0
+ name C_DeInterlace
+ tile_color 0x333333ff
+ label v1.2
+ note_font_color 0xffffff
+ xpos 5020
+ ypos 968
+ addUserKnob {20 C_DeInterlace}
+ addUserKnob {41 channels T Remove2.channels}
+ addUserKnob {4 Type M {"Scanline Integration" "Temporal Interpolation" "Double Length" "" ""}}
+ Type "Double Length"
+ addUserKnob {41 PColorspace T C_Pow6.vpow}
+ addUserKnob {41 filter T Reformat2.filter}
+ addUserKnob {26 ScanlineIntegration l "Scanline Integration"}
+ addUserKnob {41 disable_1 l "Phase Inversion" T Invert1.disable}
+ addUserKnob {26 TemporalInterpolation l "Temporal Interpolation"}
+ addUserKnob {41 useGPUIfAvailable l "Use GPU if available" T Kronos2.useGPUIfAvailable}
+ addUserKnob {41 motionEstimation l Motion T Kronos2.motionEstimation}
+ addUserKnob {41 vectorDetailLocal l "Vector Detail" T Kronos2.vectorDetailLocal}
+ addUserKnob {41 smoothnessLocal l Smoothness T Kronos2.smoothnessLocal}
+ addUserKnob {41 vectorDetailReg l "Vector Detail" T Kronos2.vectorDetailReg}
+ addUserKnob {41 strengthReg l Strength T Kronos2.strengthReg}
+ addUserKnob {26 DoubleLength l "Double Length"}
+ addUserKnob {41 InvertOrder l "Invert Order" T Frame_switch.InvertOrder}
+ addUserKnob {20 About}
+ addUserKnob {26 CreatedBy l "Created By:" T "Chris Charlton 2020"}
+ addUserKnob {26 InspiredBy l "Inspired By:" T "Frank Rueter"}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x7171c600
+  label C_DeInterlace
+  note_font_size 42
+  xpos -331
+  ypos -647
+  bdwidth 1322
+  bdheight 1869
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 840
+  ypos -562
+ }
+ Dot {
+  name Dot27
+  label PLATE
+  note_font_size 20
+  xpos 874
+  ypos -510
+ }
+set N650e2700 [stack 0]
+ Dot {
+  name Dot28
+  xpos 764
+  ypos -510
+ }
+ Remove {
+  operation keep
+  channels rgba
+  name Remove2
+  xpos 730
+  ypos -490
+ }
+ FrameRange {
+  first_frame {{first_frame}}
+  last_frame {{last_frame}}
+  time ""
+  name FrameRange2
+  label "\[value knob.first_frame]-\[value knob.last_frame]"
+  xpos 730
+  ypos -472
+ }
+ TimeClip {
+  time ""
+  first {{first_frame}}
+  before hold
+  last {{last_frame}}
+  after hold
+  origfirst {{first_frame x1073 1}}
+  origlast {{last_frame x1073 100}}
+  origset true
+  mask_metadata true
+  name TimeClip2
+  label "\[value knob.first]-\[value knob.last]"
+  xpos 730
+  ypos -424
+ }
+ Dot {
+  name Dot2
+  xpos 764
+  ypos -390
+ }
+set N650e3880 [stack 0]
+ Dot {
+  name Dot3
+  xpos 654
+  ypos -390
+ }
+set N650e3500 [stack 0]
+ Dot {
+  name Dot8
+  xpos 544
+  ypos -390
+ }
+set N650e3180 [stack 0]
+ Dot {
+  name Dot9
+  xpos 434
+  ypos -390
+ }
+set N65107500 [stack 0]
+ Dot {
+  name Dot16
+  xpos 104
+  ypos -390
+ }
+set N65107180 [stack 0]
+ Dot {
+  name Dot128
+  xpos -6
+  ypos -390
+ }
+set N65106e00 [stack 0]
+ Dot {
+  name Dot14
+  xpos -226
+  ypos -390
+ }
+ Dot {
+  name Dot15
+  xpos -226
+  ypos 858
+ }
+push $N65107500
+ Dot {
+  name Dot10
+  label "Refomat to"
+  xpos 434
+  ypos -246
+ }
+set N65106380 [stack 0]
+ Dot {
+  name Dot11
+  xpos 434
+  ypos -150
+ }
+push $N65106380
+push $N650e3180
+ FieldSelect {
+  name FieldSelect3
+  xpos 510
+  ypos -346
+ }
+ Dot {
+  name Dot12
+  label "Refomat from"
+  xpos 544
+  ypos -294
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox3
+  xpos 510
+  ypos -250
+  dope_sheet true
+ }
+ Expression {
+  temp_name0 rpow
+  temp_expr0 vpow
+  temp_name1 gpow
+  temp_expr1 vpow
+  temp_name2 bpow
+  temp_expr2 vpow
+  temp_name3 apow
+  temp_expr3 vpow
+  channel0 {rgba.red -rgba.green -rgba.blue -rgba.alpha}
+  expr0 "pow(r, rpow)"
+  channel1 {rgba.red rgba.green -rgba.blue -rgba.alpha}
+  expr1 "pow(g, gpow)"
+  channel2 {-rgba.red -rgba.green rgba.blue -rgba.alpha}
+  expr2 "pow(b, bpow)"
+  channel3 {-rgba.red -rgba.green -rgba.blue rgba.alpha}
+  expr3 "pow(a, apow)"
+  name C_Pow6
+  xpos 510
+  ypos -226
+  addUserKnob {20 User}
+  addUserKnob {7 vpow}
+  vpow 0.5
+ }
+ Reformat {
+  type "to box"
+  box_width {{(input.bbox.r-input.bbox.x)}}
+  box_height {{(input.bbox.t-input.bbox.y)}}
+  box_fixed true
+  resize distort
+  filter Lanczos4
+  name Reformat2
+  xpos 510
+  ypos -202
+ }
+ set C65127180 [stack 0]
+ Expression {
+  temp_name0 rpow
+  temp_expr0 vpow
+  temp_name1 gpow
+  temp_expr1 vpow
+  temp_name2 bpow
+  temp_expr2 vpow
+  temp_name3 apow
+  temp_expr3 vpow
+  channel0 {rgba.red -rgba.green -rgba.blue -rgba.alpha}
+  expr0 "pow(r, rpow)"
+  channel1 {rgba.red rgba.green -rgba.blue -rgba.alpha}
+  expr1 "pow(g, gpow)"
+  channel2 {-rgba.red -rgba.green rgba.blue -rgba.alpha}
+  expr2 "pow(b, bpow)"
+  channel3 {-rgba.red -rgba.green -rgba.blue rgba.alpha}
+  expr3 "pow(a, apow)"
+  name C_Pow7
+  xpos 510
+  ypos -178
+  addUserKnob {20 User}
+  addUserKnob {7 vpow}
+  vpow {{1/parent.C_Pow6.vpow}}
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox4
+  xpos 510
+  ypos -154
+  dope_sheet true
+ }
+ FrameHold {
+  first_frame {{frame}}
+  name FrameHold4
+  xpos 510
+  ypos -112
+ }
+ FrameRange {
+  first_frame {{frame}}
+  last_frame {{frame}}
+  time ""
+  name FrameRange5
+  label "\[value knob.first_frame]-\[value knob.last_frame]"
+  xpos 510
+  ypos 8
+ }
+ Dot {
+  name Dot13
+  xpos 544
+  ypos 114
+ }
+set N65126380 [stack 0]
+ Dot {
+  name Dot23
+  xpos 434
+  ypos 114
+ }
+set N65126000 [stack 0]
+ Dot {
+  name Dot33
+  xpos 214
+  ypos 114
+ }
+set N12c9fc00 [stack 0]
+ Dot {
+  name Dot29
+  xpos -116
+  ypos 114
+ }
+ Retime {
+  input.first 1083
+  input.last 1083
+  output.first 1083
+  output.last 1084
+  speed 0.5
+  filter nearest
+  time ""
+  name Retime1
+  label "In: \[value input.first] - \[value input.last]\nOut: \[value output.first] - \[value output.last]"
+  xpos -150
+  ypos 361
+ }
+push $N650e3500
+ Dot {
+  name Dot4
+  label "Refomat to"
+  xpos 654
+  ypos -246
+ }
+set N12c9f180 [stack 0]
+ Dot {
+  name Dot5
+  xpos 654
+  ypos -150
+ }
+push $N12c9f180
+push $N650e3880
+ FieldSelect {
+  field Even
+  name FieldSelect2
+  xpos 730
+  ypos -346
+ }
+ Dot {
+  name Dot6
+  label "Refomat from"
+  xpos 764
+  ypos -294
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox1
+  xpos 730
+  ypos -250
+  dope_sheet true
+ }
+ Expression {
+  temp_name0 rpow
+  temp_expr0 vpow
+  temp_name1 gpow
+  temp_expr1 vpow
+  temp_name2 bpow
+  temp_expr2 vpow
+  temp_name3 apow
+  temp_expr3 vpow
+  channel0 {rgba.red -rgba.green -rgba.blue -rgba.alpha}
+  expr0 "pow(r, rpow)"
+  channel1 {rgba.red rgba.green -rgba.blue -rgba.alpha}
+  expr1 "pow(g, gpow)"
+  channel2 {-rgba.red -rgba.green rgba.blue -rgba.alpha}
+  expr2 "pow(b, bpow)"
+  channel3 {-rgba.red -rgba.green -rgba.blue rgba.alpha}
+  expr3 "pow(a, apow)"
+  name C_Pow4
+  xpos 730
+  ypos -226
+  addUserKnob {20 User}
+  addUserKnob {7 vpow}
+  vpow {{parent.C_Pow6.vpow}}
+ }
+clone $C65127180 {
+  xpos 730
+  ypos -202
+  selected false
+ }
+ Expression {
+  temp_name0 rpow
+  temp_expr0 vpow
+  temp_name1 gpow
+  temp_expr1 vpow
+  temp_name2 bpow
+  temp_expr2 vpow
+  temp_name3 apow
+  temp_expr3 vpow
+  channel0 {rgba.red -rgba.green -rgba.blue -rgba.alpha}
+  expr0 "pow(r, rpow)"
+  channel1 {rgba.red rgba.green -rgba.blue -rgba.alpha}
+  expr1 "pow(g, gpow)"
+  channel2 {-rgba.red -rgba.green rgba.blue -rgba.alpha}
+  expr2 "pow(b, bpow)"
+  channel3 {-rgba.red -rgba.green -rgba.blue rgba.alpha}
+  expr3 "pow(a, apow)"
+  name C_Pow5
+  xpos 730
+  ypos -178
+  addUserKnob {20 User}
+  addUserKnob {7 vpow}
+  vpow {{parent.C_Pow7.vpow}}
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox2
+  xpos 730
+  ypos -154
+  dope_sheet true
+ }
+ FrameHold {
+  first_frame {{frame}}
+  name FrameHold3
+  xpos 730
+  ypos -112
+ }
+ Dot {
+  name Dot7
+  xpos 764
+  ypos -78
+ }
+set N12cbea80 [stack 0]
+ Dot {
+  name Dot25
+  xpos 654
+  ypos -78
+ }
+set N12cbe700 [stack 0]
+ Dot {
+  name Dot30
+  xpos -6
+  ypos -78
+ }
+ Retime {
+  input.first 1000
+  input.last 1354
+  output.first 1000
+  output.last 1709
+  speed 0.5
+  filter nearest
+  time ""
+  name Retime2
+  label "In: \[value input.first] - \[value input.last]\nOut: \[value output.first] - \[value output.last]"
+  xpos -40
+  ypos 361
+ }
+ Position {
+  translate {0 1}
+  name Position5
+  xpos -40
+  ypos 446
+ }
+ Switch {
+  inputs 2
+  which {{(sin((frame+first_frame+InvertOrder+0.5)*pi)+1)/2}}
+  name Frame_switch
+  label "\[value which]"
+  xpos -150
+  ypos 440
+  addUserKnob {20 User}
+  addUserKnob {6 InvertOrder l "Invert Order" +STARTLINE}
+  InvertOrder true
+ }
+ Dot {
+  name Dot31
+  xpos -116
+  ypos 810
+ }
+push $N12cbea80
+ FrameRange {
+  first_frame {{frame}}
+  last_frame {{frame}}
+  time ""
+  name FrameRange4
+  label "\[value knob.first_frame]-\[value knob.last_frame]"
+  xpos 730
+  ypos 8
+ }
+ Position {
+  translate {0 1}
+  name Position3
+  xpos 730
+  ypos 62
+ }
+push $N65126380
+ AppendClip {
+  inputs 2
+  meta_from_first false
+  time ""
+  name AppendClip2
+  xpos 730
+  ypos 110
+ }
+ FrameRange {
+  first_frame 1
+  last_frame 2
+  time ""
+  name FrameRange6
+  label "\[value knob.first_frame]-\[value knob.last_frame]"
+  selected true
+  xpos 730
+  ypos 152
+ }
+ Kronos {
+  input.last 2
+  timing2 Frame
+  timingFrame2 1.5
+  showLegacyMode false
+  motionEstimation Regularized
+  vectorDetailLocal 0.36
+  smoothnessLocal 0.126
+  vectorDetailReg 1
+  autoShutterTime true
+  Advanced 1
+  flickerCompensation true
+  legacyModeNuke9 false
+  Tolerances 1
+  name Kronos2
+  label "\[value timingFrame2]"
+  xpos 730
+  ypos 313
+ }
+ Position {
+  translate {0 -1}
+  name Position2
+  xpos 730
+  ypos 734
+ }
+push $N12cbe700
+ TimeOffset {
+  time_offset 1
+  time ""
+  name TimeOffset1
+  xpos 620
+  ypos -34
+ }
+ FrameRange {
+  first_frame {{frame}}
+  last_frame {{frame}}
+  time ""
+  name FrameRange7
+  label "\[value knob.first_frame]-\[value knob.last_frame]"
+  xpos 620
+  ypos 8
+ }
+ Position {
+  translate {0 1}
+  name Position1
+  xpos 620
+  ypos 62
+ }
+ Dot {
+  name Dot20
+  xpos 654
+  ypos 258
+ }
+set N12cec000 [stack 0]
+ Dot {
+  name Dot32
+  xpos 324
+  ypos 258
+ }
+set N12d2dc00 [stack 0]
+ Dot {
+  name Dot21
+  xpos 104
+  ypos 258
+ }
+ Dot {
+  name Dot34
+  xpos 104
+  ypos 402
+ }
+push $N12c9fc00
+ Merge2 {
+  inputs 2
+  operation average
+  bbox B
+  name Merge2
+  xpos 180
+  ypos 398
+ }
+ Dot {
+  name Dot35
+  xpos 214
+  ypos 690
+ }
+push $N65106e00
+ Expression {
+  channel0 rgba
+  expr0 (sin((y+0.5)*pi)+1)/2
+  channel1 {-rgba.red -rgba.green -rgba.blue none}
+  channel2 {-rgba.red -rgba.green -rgba.blue none}
+  name Scanlines
+  xpos -40
+  ypos -346
+ }
+ Dot {
+  name Dot19
+  xpos -6
+  ypos -294
+ }
+push $N65107180
+ Expression {
+  channel0 rgba
+  expr0 "frame > first_frame && frame < last_frame ? 1 : 0"
+  channel1 {-rgba.red -rgba.green -rgba.blue none}
+  channel2 {-rgba.red -rgba.green -rgba.blue none}
+  name Frame_Check
+  xpos 70
+  ypos -346
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  bbox B
+  name Merge1
+  xpos 70
+  ypos -298
+ }
+ Invert {
+  name Invert1
+  xpos 70
+  ypos 152
+ }
+ Dot {
+  name Dot129
+  xpos 104
+  ypos 210
+ }
+set N12d49180 [stack 0]
+ Invert {
+  name Invert9
+  xpos 70
+  ypos 248
+ }
+ Dot {
+  name Dot122
+  xpos 104
+  ypos 306
+ }
+push $N12d2dc00
+ Merge2 {
+  inputs 2
+  operation multiply
+  bbox B
+  name Merge45
+  xpos 290
+  ypos 302
+ }
+ Dot {
+  name Dot22
+  xpos 324
+  ypos 354
+ }
+push $N12d49180
+push $N65126000
+ Merge2 {
+  inputs 2
+  operation multiply
+  bbox B
+  name Merge43
+  xpos 400
+  ypos 206
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  bbox B
+  name Merge47
+  xpos 400
+  ypos 350
+ }
+ Shuffle {
+  alpha white
+  name Shuffle1
+  label "\[if \{\[value in] == \"rgba\" && \[value out] == \"rgba\" && \[value red] == \"red\" && \[value green] ==\"green\" && \[value blue] == \"blue\" && \[value alpha] != \"alpha\"\} \{return \"alpha = \[value alpha]\"\} \{return \"\[value in] to \[value out] (\[string index \[value red] 0]\[string index \[value green] 0]\[string index \[value blue] 0]\[string index \[value alpha] 0])\"\}]"
+  xpos 400
+  ypos 464
+ }
+ Dot {
+  name Dot24
+  xpos 434
+  ypos 522
+ }
+push $N65126380
+ Shuffle {
+  alpha white
+  name Shuffle3
+  label "\[if \{\[value in] == \"rgba\" && \[value out] == \"rgba\" && \[value red] == \"red\" && \[value green] ==\"green\" && \[value blue] == \"blue\" && \[value alpha] != \"alpha\"\} \{return \"alpha = \[value alpha]\"\} \{return \"\[value in] to \[value out] (\[string index \[value red] 0]\[string index \[value green] 0]\[string index \[value blue] 0]\[string index \[value alpha] 0])\"\}]"
+  xpos 510
+  ypos 464
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge46
+  xpos 510
+  ypos 518
+ }
+ Shuffle {
+  alpha white
+  name Shuffle2
+  label "\[if \{\[value in] == \"rgba\" && \[value out] == \"rgba\" && \[value red] == \"red\" && \[value green] ==\"green\" && \[value blue] == \"blue\" && \[value alpha] != \"alpha\"\} \{return \"alpha = \[value alpha]\"\} \{return \"\[value in] to \[value out] (\[string index \[value red] 0]\[string index \[value green] 0]\[string index \[value blue] 0]\[string index \[value alpha] 0])\"\}]"
+  xpos 510
+  ypos 560
+ }
+ Dot {
+  name Dot17
+  xpos 544
+  ypos 618
+ }
+push $N12cec000
+ Shuffle {
+  alpha white
+  name Shuffle4
+  label "\[if \{\[value in] == \"rgba\" && \[value out] == \"rgba\" && \[value red] == \"red\" && \[value green] ==\"green\" && \[value blue] == \"blue\" && \[value alpha] != \"alpha\"\} \{return \"alpha = \[value alpha]\"\} \{return \"\[value in] to \[value out] (\[string index \[value red] 0]\[string index \[value green] 0]\[string index \[value blue] 0]\[string index \[value alpha] 0])\"\}]"
+  xpos 620
+  ypos 464
+ }
+ Merge2 {
+  inputs 2
+  bbox B
+  name Merge48
+  xpos 620
+  ypos 614
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy2
+  xpos 620
+  ypos 680
+ }
+ Position {
+  translate {0 -1}
+  name Position4
+  xpos 620
+  ypos 734
+ }
+ Dot {
+  name Dot1
+  xpos 654
+  ypos 786
+ }
+ Switch {
+  inputs 3
+  which {{Type}}
+  name Type
+  label "switch: \[value which]"
+  xpos 730
+  ypos 800
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox19
+  xpos 730
+  ypos 854
+  dope_sheet true
+ }
+ Dot {
+  name Dot26
+  xpos 764
+  ypos 978
+ }
+push $N650e2700
+ Copy {
+  inputs 2
+  channels all
+  name Copy1
+  xpos 840
+  ypos 961
+ }
+ TimeClip {
+  time ""
+  first {{first_frame}}
+  before hold
+  last {{first_frame+(last_frame-first_frame)*(Type==2?2:1)}}
+  after hold
+  origfirst {{first_frame x1073 1}}
+  origlast {{last_frame x1073 100}}
+  origset true
+  mask_metadata true
+  name TimeClip1
+  label "\[value knob.first]-\[value knob.last]"
+  xpos 840
+  ypos 1040
+ }
+ Dot {
+  name Dot18
+  label OUTPUT
+  note_font_size 20
+  xpos 874
+  ypos 1122
+ }
+ Output {
+  name Output1
+  xpos 840
+  ypos 1166
+ }
+end_group
