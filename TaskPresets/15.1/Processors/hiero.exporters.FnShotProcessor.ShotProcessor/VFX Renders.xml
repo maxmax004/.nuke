@@ -1,6 +1,6 @@
 <root tasktype="hiero.exporters.FnShotProcessor.ShotProcessor" presetname="VFX Renders">
-    <excludeTags valuetype="list" />
-    <includeTags valuetype="list" />
+    <excludeTags valuetype="list"/>
+    <includeTags valuetype="list"/>
     <versionIndex valuetype="int">3</versionIndex>
     <versionPadding valuetype="int">2</versionPadding>
     <exportTemplate valuetype="list">
@@ -47,7 +47,7 @@
                         <burnIn_bottomRight valuetype="NoneType">None</burnIn_bottomRight>
                     </burninData>
                     <additionalNodesEnabled valuetype="bool">False</additionalNodesEnabled>
-                    <additionalNodesData valuetype="list" />
+                    <additionalNodesData valuetype="list"/>
                     <method valuetype="str">Blend</method>
                     <includeEffects valuetype="bool">True</includeEffects>
                     <includeAudio valuetype="bool">False</includeAudio>

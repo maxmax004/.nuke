@@ -20,7 +20,7 @@
                     </views>
                     <colourspace valuetype="str">default</colourspace>
                     <mov valuetype="dict">
-                        <mov64_codec valuetype="str">AVdn&#x09;Avid DNxHD</mov64_codec>
+                        <mov64_codec valuetype="str">AVdn	Avid DNxHD</mov64_codec>
                     </mov>
                     <includeAudio valuetype="bool">True</includeAudio>
                     <deleteAudio valuetype="bool">True</deleteAudio>
@@ -40,7 +40,7 @@
                         <burnIn_bottomRight valuetype="NoneType">None</burnIn_bottomRight>
                     </burninData>
                     <additionalNodesEnabled valuetype="bool">False</additionalNodesEnabled>
-                    <additionalNodesData valuetype="list" />
+                    <additionalNodesData valuetype="list"/>
                     <method valuetype="str">Blend</method>
                     <includeEffects valuetype="bool">True</includeEffects>
                     <includeAnnotations valuetype="bool">False</includeAnnotations>

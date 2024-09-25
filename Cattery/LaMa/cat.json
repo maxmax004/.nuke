@@ -1,0 +1,13 @@
+{
+    "minimum_nuke_version_required": 14.0,
+    "version": 1,
+    "category": "Inpainting",
+    "description": "Inpainting is a technique used to reconstruct or replace missing or damaged parts of an image in a seamless and visually coherent manner.",
+    "cats": [
+        {
+            "filepath": "LaMa.gizmo",
+            "name": "LaMa Inpainting",
+            "icon": "LaMa.png"
+        }
+    ]
+}

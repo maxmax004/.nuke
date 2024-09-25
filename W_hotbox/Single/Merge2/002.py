@@ -7,5 +7,5 @@
 #----------------------------------------------------------------------------------------------------------
 
 for i in nuke.selectedNodes():
-	i.knob('output').setValue('rgb')
-	i.knob('operation').setValue('min')
+    
+    i.knob('operation').setValue('min')

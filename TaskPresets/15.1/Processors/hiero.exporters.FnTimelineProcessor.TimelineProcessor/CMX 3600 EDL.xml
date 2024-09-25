@@ -9,7 +9,7 @@
                     <abspath valuetype="bool">False</abspath>
                     <truncate valuetype="bool">False</truncate>
                     <fromClip valuetype="str">{filename}</fromClip>
-                    <reelName valuetype="str" />
+                    <reelName valuetype="str"/>
                 </root>
             </SequenceItem>
         </SequenceItem>

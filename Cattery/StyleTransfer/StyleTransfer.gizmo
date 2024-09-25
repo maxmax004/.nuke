@@ -1,0 +1,82 @@
+version 13.1 v1
+Gizmo {
+ inputs 2
+ onCreate "if nuke.NUKE_VERSION_MAJOR >= 14:\n    if nuke.expression('$gui'):\n        nukescripts.cattery.create_menu()\npath = \[i for i in nuke.pluginPath() if ''.join(l for l in nuke.thisNode().name() if l.isalpha()).lower() in i.lower()][0]\nif not path in sys.path:\n    sys.path.append(path)\nimport cattery_style_transfer\ncattery_style_transfer.on_create()"
+ knobChanged "if nuke.NUKE_VERSION_MAJOR >= 14:\n    try:\n        import cattery_style_transfer\n    except:\n        if nuke.expression('$gui'):\n            nukescripts.cattery.create_menu()\npath = \[i for i in nuke.pluginPath() if ''.join(l for l in nuke.thisNode().name() if l.isalpha()).lower() in i.lower()][0]\nif not path in sys.path:\n    sys.path.append(path)\nimport cattery_style_transfer\ncattery_style_transfer.knob_changed()"
+ onDestroy "nuke.thisNode()\[\"knobChanged\"].setValue(\"\")"
+ addUserKnob {20 StyleTransfer}
+ addUserKnob {26 localGPU l "Local GPU:" T ""}
+ addUserKnob {26 gpuName l "" -STARTLINE T "AMD Radeon Pro 5300M"}
+ addUserKnob {6 useGPUIfAvailable l "Use GPU if available" t "Select this to render on the <b>Local GPU</b>, if available.\n\nYou can select this even if no GPU is currently available on your machine. The GPU will then be used whenever the script is opened on a machine which does have a GPU available. You should also select this if you wish to render from the command line with the <b>--gpu</b> option.\n\nIf this node requires full frames from its inputs, and is therefore unable to reduce its memory overhead, it will fall back to the CPU if an attempt to render a frame on the GPU fails due to lack of memory. When this occurs, a warning message will be printed to the console." +STARTLINE}
+ useGPUIfAvailable true
+ addUserKnob {26 ""}
+ addUserKnob {26 channelsIn l "Channels In:" t "The channels the model expects as input." T "rgba.red, rgba.green, rgba.blue"}
+ addUserKnob {41 in_colorspace l "Input Colorspace" t "Define the colorspace that the input image is in." T Colorspace1.colorspace_in}
+}
+ Input {
+  inputs 0
+  name Style
+  xpos 653
+  ypos -43
+  number 1
+ }
+ Reformat {
+  type "to box"
+  box_width {{Input1.width}}
+  box_height {{Input1.height}}
+  box_fixed true
+  resize fill
+  name Reformat1
+  xpos 653
+  ypos -5
+ }
+ Colorspace {
+  colorspace_out sRGB
+  name Colorspace1
+  knobChanged "nuke.toNode(\"Colorspace2\")\[\"colorspace_out\"].setValue(nuke.thisNode()\[\"colorspace_in\"].value())"
+  xpos 653
+  ypos 33
+ }
+ set C4c404c00 [stack 0]
+ Input {
+  inputs 0
+  name Input1
+  xpos 829
+  ypos -43
+ }
+clone $C4c404c00 {
+  xpos 829
+  ypos 33
+  selected false
+ }
+ Shuffle2 {
+  inputs 2
+  fromInput1 {{1} B A}
+  out1 motion
+  fromInput2 {{0} B A}
+  out2 alpha
+  mappings "5 rgba.red 0 0 rgba.alpha 1 0 black -1 -1 backward.v 0 3 rgba.green 0 1 forward.u 0 0 rgba.blue 0 2 forward.v 0 1 black -1 -1 backward.u 0 2"
+  name Shuffle1
+  xpos 829
+  ypos 138
+ }
+ Inference {
+  modelFile "\[lsearch -inline \[plugins -all style-transfer.cat] *.cat]"
+  serialiseKnob {}
+  name Inference1
+  xpos 829
+  ypos 182
+ }
+ Colorspace {
+  colorspace_in sRGB
+  colorspace_out RGB
+  name Colorspace2
+  xpos 829
+  ypos 244
+ }
+ Output {
+  name Output1
+  xpos 829
+  ypos 335
+ }
+end_group

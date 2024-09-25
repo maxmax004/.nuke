@@ -62,7 +62,7 @@
                         <burnIn_bottomRight valuetype="NoneType">None</burnIn_bottomRight>
                     </burninData>
                     <additionalNodesEnabled valuetype="bool">False</additionalNodesEnabled>
-                    <additionalNodesData valuetype="list" />
+                    <additionalNodesData valuetype="list"/>
                     <method valuetype="str">Blend</method>
                     <includeEffects valuetype="bool">True</includeEffects>
                     <includeAnnotations valuetype="bool">False</includeAnnotations>
@@ -116,7 +116,7 @@
                         <burnIn_bottomRight valuetype="NoneType">None</burnIn_bottomRight>
                     </burninData>
                     <additionalNodesEnabled valuetype="bool">False</additionalNodesEnabled>
-                    <additionalNodesData valuetype="list" />
+                    <additionalNodesData valuetype="list"/>
                     <method valuetype="str">Blend</method>
                     <includeEffects valuetype="bool">True</includeEffects>
                     <includeAudio valuetype="bool">False</includeAudio>

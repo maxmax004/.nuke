@@ -1,7 +1,7 @@
 Preferences {
  inputs 0
  name Preferences
-  AutoSaveName "D:/Dropbox/PROJECTS/NUKE_AUTOSAVE/\[lindex \[split \[lindex \[split \[value root.name] :] end] /] 2]_\[lindex \[split \[lindex \[split \[value root.name] :] end] /] 3]_\[lindex \[split \[lindex \[split \[value root.name] /] end] .] 0]..autosave"
+  AutoSaveName "D:/KPVFX/MAX BACKUP/NUKE_AUTOSAVE/\[lindex \[split \[lindex \[split \[value root.name] :] end] /] 2]_\[lindex \[split \[lindex \[split \[value root.name] :] end] /] 3]_\[lindex \[split \[lindex \[split \[value root.name] /] end] .] 0]..autosave"
   AutoSaveIdle 30
   AutoSaveTime 500
   selectedGPUDeviceName "NVIDIA GeForce RTX 4090"

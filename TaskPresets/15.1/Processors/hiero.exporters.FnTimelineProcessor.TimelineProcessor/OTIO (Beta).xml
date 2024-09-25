@@ -5,7 +5,10 @@
         <SequenceItem valuetype="tuple">
             <SequenceItem valuetype="str">{sequence}/{sequence}.otio</SequenceItem>
             <SequenceItem valuetype="hiero.exporters.FnOTIOExportTask.OTIOExportPreset">
-                <root tasktype="hiero.exporters.FnOTIOExportTask.OTIOExportTask" presetname="" />
+                <root tasktype="hiero.exporters.FnOTIOExportTask.OTIOExportTask" presetname="">
+                    <writeCompRenderPaths valuetype="bool">True</writeCompRenderPaths>
+                    <includeEffects valuetype="bool">True</includeEffects>
+                </root>
             </SequenceItem>
         </SequenceItem>
     </exportTemplate>

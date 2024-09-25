@@ -4,7 +4,7 @@ nuke.pluginAddPath("./Gizmos")
 import autosave
 
 # nuke.ViewerProcess.register("GRN_515_LUT", nuke.Node, ("GRN_515", ""))
-nuke.ViewerProcess.register("TVSS_lut", nuke.Node, ("TVSS_lut", ""))
+# nuke.ViewerProcess.register("TVSS_lut", nuke.Node, ("TVSS_lut", ""))
 
 #nuke.ViewerProcess.register("_______", nuke.Node, ("_______", ""))
 
@@ -25,3 +25,7 @@ import nuke
 #    if sys.platform in ("Windows", "Microsoft"):
 #        return filename.replace( "/run/media/carlos/WorkLinux/Dropbox/", "D:/Dropbox/" )
 #   return filename.replace( "D:/Dropbox/", "/run/media/carlos/WorkLinux/Dropbox/")
+
+import nuke
+nuke.pluginAddPath('./Cattery/vitmatte')
+nuke.pluginAddPath('./Cattery/DepthAnythingV2')

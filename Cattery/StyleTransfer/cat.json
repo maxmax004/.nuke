@@ -1,0 +1,13 @@
+{
+    "minimum_nuke_version_required": 13.1,
+    "version": 1,
+    "category": "Stylization",
+    "description": "",
+    "cats": [
+        {
+            "filepath": "StyleTransfer.gizmo",
+            "name": "Multi-Style Transfer",
+            "icon": "MultiStyleTransfer.png"
+        }
+    ]
+}

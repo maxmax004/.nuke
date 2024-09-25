@@ -100,7 +100,7 @@
     </exportTemplate>
     <exportRoot valuetype="str">{projectroot}/../</exportRoot>
     <cutHandles valuetype="int">10</cutHandles>
-    <cutUseHandles valuetype="bool">True</cutUseHandles>
+    <cutUseHandles valuetype="bool">False</cutUseHandles>
     <cutLength valuetype="bool">True</cutLength>
     <includeRetimes valuetype="bool">False</includeRetimes>
     <startFrameIndex valuetype="int">1000</startFrameIndex>

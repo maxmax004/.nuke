@@ -1,6 +1,6 @@
 <root tasktype="hiero.exporters.FnShotProcessor.ShotProcessor" presetname="Basic Nuke Shot">
-    <excludeTags valuetype="list" />
-    <includeTags valuetype="list" />
+    <excludeTags valuetype="list"/>
+    <includeTags valuetype="list"/>
     <versionIndex valuetype="int">1</versionIndex>
     <versionPadding valuetype="int">2</versionPadding>
     <exportTemplate valuetype="list">
@@ -9,14 +9,14 @@
             <SequenceItem valuetype="hiero.exporters.FnNukeShotExporter.NukeShotPreset">
                 <root tasktype="hiero.exporters.FnNukeShotExporter.NukeShotExporter" presetname="">
                     <enable valuetype="bool">True</enable>
-                    <readPaths valuetype="list" />
+                    <readPaths valuetype="list"/>
                     <writePaths valuetype="list">
                         <SequenceItem valuetype="str">{shot}/nuke/renders/{shot}_comp{_nameindex}_{version}.####.{ext}</SequenceItem>
                     </writePaths>
                     <timelineWriteNode valuetype="str">{shot}/nuke/renders/{shot}_comp{_nameindex}_{version}.####.{ext}</timelineWriteNode>
                     <collateTracks valuetype="bool">False</collateTracks>
                     <collateShotNames valuetype="bool">False</collateShotNames>
-                    <annotationsPreCompPaths valuetype="list" />
+                    <annotationsPreCompPaths valuetype="list"/>
                     <includeAnnotations valuetype="bool">False</includeAnnotations>
                     <showAnnotations valuetype="bool">True</showAnnotations>
                     <includeEffects valuetype="bool">True</includeEffects>
@@ -24,7 +24,7 @@
                     <collateSequence valuetype="bool">False</collateSequence>
                     <collateCustomStart valuetype="bool">True</collateCustomStart>
                     <additionalNodesEnabled valuetype="bool">False</additionalNodesEnabled>
-                    <additionalNodesData valuetype="list" />
+                    <additionalNodesData valuetype="list"/>
                     <method valuetype="str">Blend</method>
                     <reformat valuetype="dict">
                         <to_type valuetype="str">Plate Resolution</to_type>

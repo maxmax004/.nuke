@@ -20,7 +20,7 @@
                     </views>
                     <colourspace valuetype="str">default</colourspace>
                     <mov valuetype="dict">
-                        <mov64_codec valuetype="str">appr&#x09;Apple ProRes</mov64_codec>
+                        <mov64_codec valuetype="str">appr	Apple ProRes</mov64_codec>
                         <mov_prores_codec_profile valuetype="str">ProRes 4:4:4:4 12-bit</mov_prores_codec_profile>
                     </mov>
                     <includeAudio valuetype="bool">True</includeAudio>
@@ -41,7 +41,7 @@
                         <burnIn_bottomRight valuetype="NoneType">None</burnIn_bottomRight>
                     </burninData>
                     <additionalNodesEnabled valuetype="bool">False</additionalNodesEnabled>
-                    <additionalNodesData valuetype="list" />
+                    <additionalNodesData valuetype="list"/>
                     <method valuetype="str">Blend</method>
                     <includeEffects valuetype="bool">True</includeEffects>
                     <includeAnnotations valuetype="bool">False</includeAnnotations>

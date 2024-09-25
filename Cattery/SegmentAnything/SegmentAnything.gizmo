@@ -1,0 +1,189 @@
+version 15.1
+Group {
+ name SegmentAnything1
+ onCreate "nukescripts.cattery.create_menu()\npath = \[i for i in nuke.pluginPath() if ''.join(l for l in nuke.thisNode().name() if l.isalpha()).lower() in i.lower()]\[0]\nif not path in sys.path:\n    sys.path.append(path)\nimport cattery_segment_anything\ncattery_segment_anything.on_create()"
+ onDestroy "nuke.thisNode()\[\"knobChanged\"].setValue(\"\")"
+ knobChanged "import cattery_segment_anything\ncattery_segment_anything.knob_changed()"
+ selected true
+ xpos 50
+ ypos 8
+ addUserKnob {20 SegmentAnything}
+ addUserKnob {26 localGPU l "Local GPU:" T ""}
+ addUserKnob {26 gpuName l "" -STARTLINE T "NVIDIA RTX A5000"}
+ addUserKnob {6 useGPUIfAvailable l "Use GPU if available" t "Select this to render on the <b>Local GPU</b>, if available.\n\nYou can select this even if no GPU is currently available on your machine. The GPU will then be used whenever the script is opened on a machine which does have a GPU available. You should also select this if you wish to render from the command line with the <b>--gpu</b> option.\n\nIf this node requires full frames from its inputs, and is therefore unable to reduce its memory overhead, it will fall back to the CPU if an attempt to render a frame on the GPU fails due to lack of memory. When this occurs, a warning message will be printed to the console." +STARTLINE}
+ useGPUIfAvailable true
+ addUserKnob {26 ""}
+ addUserKnob {26 channelsIn l "Channels In:" t "The channels the model expects as input." T "rgba.red, rgba.green, rgba.blue"}
+ addUserKnob {41 in_colorspace l "Input Colorspace" t "Define the colorspace that the input image is in." T Colorspace1.colorspace_in}
+ addUserKnob {4 downrez l Downrez t "Reduce the resolution of the input plate by a factor of X. Use when exceeding available GPU memory." M {off 2x 4x 6x 8x ""}}
+ downrez 2x
+ addUserKnob {4 mode l Mode t "Select what type of segmentation mode you want to use.\n\n <b>Multi Mask</b>: This mode segments every object identified in the image. For optimal use, click on <b>Create Cryptomatte Setup </b> to convert the pixel data into Cryptomatte data.\n\n <b>Single Mask</b>: This mode segments an object based on a point's position provided by the user. You can add points to select objects and subtract points to remove sections of the objects from the mask." M {"Multi Mask" "Single Mask" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""}}
+ addUserKnob {4 view_mode l View t "Select if you want to output the mask of the selected object or an overlay of the points used to segment the image." +HIDDEN M {Mask "Point overlay" "" "" ""}}
+ addUserKnob {22 add_to_mask l "Add to mask" t "Click here to add a point to segment a particular object. If there are no points the node will output the same as Multi mask mode." +HIDDEN T "import cattery_segment_anything\n\ncattery_segment_anything.create_new_points(nuke.thisNode())" +STARTLINE}
+ addUserKnob {22 remove_from_mask l "Remove from mask" t "Click here to add a point to remove a section from a particular mask. If there are no points the node will output the same as Multi mask mode." -STARTLINE +HIDDEN T "import cattery_segment_anything\ncattery_segment_anything.create_new_points(nuke.thisNode(), _is_negative= True)"}
+ addUserKnob {22 create_crypto_matte l "Create Cryptomatte Setup" t "Create a stack of encryptomatte nodes to allow for Cryptomatte workflow." T "import cattery_segment_anything \n\ncattery_segment_anything.create_cryptomatte()" +STARTLINE}
+ addUserKnob {26 ""}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -661
+  ypos -171
+ }
+ Dot {
+  name Dot4
+  xpos -627
+  ypos -144
+ }
+set Na56f0c00 [stack 0]
+ Dot {
+  name Dot5
+  xpos -517
+  ypos -144
+ }
+set Na56f1c00 [stack 0]
+ Dot {
+  name Dot1
+  xpos -151
+  ypos -144
+ }
+set Na571e400 [stack 0]
+ Dot {
+  name Dot3
+  xpos 25
+  ypos -144
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  name Constant1
+  xpos -911
+  ypos -147
+ }
+ Crop {
+  box {0 0 {Input1.width} {Input1.height}}
+  reformat true
+  crop false
+  name Crop1
+  xpos -911
+  ypos -44
+ }
+set Na56f0400 [stack 0]
+push $Na56f0c00
+ Shuffle2 {
+  inputs 2
+  fromInput1 {{0} B A}
+  fromInput2 {{1} B A}
+  in2 rgb
+  out2 motion
+  mappings "8 rgba.red 0 0 rgba.red 0 0 rgba.green 0 1 rgba.green 0 1 rgba.blue 0 2 rgba.blue 0 2 rgba.alpha 0 3 rgba.alpha 0 3 black -1 -1 backward.u 1 2 black -1 -1 backward.v 1 3 rgba.red 1 0 forward.u 1 0 rgba.green 1 1 forward.v 1 1"
+  name Shuffle1
+  xpos -661
+  ypos -64
+ }
+set Na56f1000 [stack 0]
+ Dot {
+  name Dot2
+  xpos -381
+  ypos -61
+ }
+ Shuffle2 {
+  fromInput1 {{0} B}
+  in1 motion
+  fromInput2 {{0} B}
+  mappings "4 backward.u 0 2 rgba.blue 0 2 backward.v 0 3 rgba.alpha 0 3 forward.u 0 0 rgba.green 0 1 forward.v 0 1 rgba.red 0 0"
+  name Shuffle2
+  xpos -415
+  ypos 103
+ }
+push $Na571e400
+ Merge2 {
+  inputs 2
+  name Merge_Overlay1
+  xpos -185
+  ypos 103
+ }
+push $Na56f0400
+push $Na56f1000
+ Reformat {
+  type scale
+  scale {{"downrez != 0 ? 1/(downrez * 2) : 1"}}
+  name Reformat1
+  xpos -661
+  ypos -35
+ }
+ Colorspace {
+  colorspace_out sRGB
+  name Colorspace1
+  xpos -661
+  ypos 7
+ }
+ Inference {
+  useGPUIfAvailable {{parent.useGPUIfAvailable}}
+  modelFile "\[lsearch -inline \[plugins -all sam_medium.cat] *.cat]"
+  serialiseKnob {maskThreshold:1;predIouThresh:0.88;stabilityScoreOffset:1;stabilityScoreThresh:0.95;pointsPerBatch:64;boxNmsThresh:0.7;pointsPerSide:32;}
+  name Inference1
+  onDestroy "\nnuke.thisNode()\['knobChanged'].setValue('')"
+  xpos -661
+  ypos 54
+  addUserKnob {20 User}
+  addUserKnob {7 mask_threshold l "Mask Threshold" R -1 1}
+  mask_threshold 1
+ }
+set Na56f1800 [stack 0]
+ Switch {
+  inputs 2
+  which {{"\[python \{nuke.toNode('Shuffle1').inputs()\}] == 1?1:0"}}
+  patterns {
+   {i0 ""}
+   {i1 ""}
+  }
+  name Switch1
+  xpos -661
+  ypos 158
+ }
+ Switch {
+  inputs 2
+  which {{"mode == 1 && view_mode == 1?1:0"}}
+  patterns {
+   {i0 ""}
+   {i1 ""}
+  }
+  name Switch2
+  xpos -185
+  ypos 158
+ }
+ Switch {
+  inputs 2
+  which {{"\[python \{len(nuke.toNode('Input1').channels())\}] == 0 ? 1 : 0"}}
+  patterns {
+   {i0 ""}
+   {i1 ""}
+  }
+  name Switch3
+  xpos -9
+  ypos 158
+ }
+ Output {
+  name Output1
+  xpos -9
+  ypos 237
+ }
+push $Na56f1800
+ Reformat {
+  type scale
+  scale {{1/Reformat1.scale}}
+  name Reformat2
+  xpos -661
+  ypos 86
+ }
+push $Na56f1c00
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos -551
+  ypos 80
+ }
+end_group
