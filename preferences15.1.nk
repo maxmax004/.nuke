@@ -12,7 +12,6 @@ Preferences {
   NodeColourSlot16 "mocha pro"
   NodeColourChoice16 0xff26edff
   SnapToGrid true
-  show_grid true
   ArrowColorLeft 0xff0000ff
   ArrowColorRight 0xff9100ff
   ArrowColorUp 0xff00a9ff
