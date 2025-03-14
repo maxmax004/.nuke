@@ -9,7 +9,8 @@
   "Nuke/Viewer/Connect to A Side/Using Input 6": "Ctrl+6",
   "Nuke/Viewer/Connect to A Side/Using Input 7": "Ctrl+7",
   "Nuke/Viewer/Connect to A Side/Using Input 8": "Ctrl+8",
-  "Nuke/Viewer/Connect to A Side/Using Input 9": "Ctrl+9"
+  "Nuke/Viewer/Connect to A Side/Using Input 9": "Ctrl+9",
+  "Viewer/Input/0": "0"
  },
  "version": 1
 }

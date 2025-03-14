@@ -39,6 +39,18 @@ HeyGizmosMenu.addCommand('PointCloudKeyer', 'nuke.createNode("PointCloudKeyer")'
 HeyGizmosMenu.addCommand('L_Grain', 'nuke.createNode("L_Grain_v05")')
 HeyGizmosMenu.addCommand('RoughenEdges', 'nuke.createNode("RoughenEdges.gizmo")')
 
+
+'''
+
+m = menubar.addMenu("&Viewer")
+n = m.addMenu("Connect to A Side")
+n.addCommand("Using Input &1", "nuke.connectViewer(0, nuke.selectedNode())", "ctrl+1")
+n.addCommand("Using Input &2", "nuke.connectViewer(1, nuke.selectedNode())", "ctrl+2")
+n.addCommand("Using Input &3", "nuke.connectViewer(2, nuke.selectedNode())", "ctrl+3")'''
+
+
+
+
 menubar=nuke.menu("Nodes")
 
 m=menubar.addMenu("gizmos", "gizmos.png")
@@ -52,5 +64,6 @@ import nuke
 toolbar = nuke.menu("Nodes")
 toolbar.addCommand('Cattery/Segmentation/ViTMatte', 'nuke.createNode("vitmatte")', icon="vitmatte.png")
 toolbar.addCommand('Cattery/Depth Estimation/DepthAnythingV2', 'nuke.createNode("DepthAnythingV2")', icon="DepthAnythingV2.png")
+
 
 
